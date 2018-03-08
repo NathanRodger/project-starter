@@ -1,0 +1,36 @@
+{
+  "name": "template-base",
+  "version": "1.0.0",
+  "description": "Base template",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "browser-sync": "^2.23.6",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.9.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^5.0.0",
+    "gulp-babel": "^7.0.1",
+    "gulp-clean-css": "^3.9.2",
+    "gulp-eslint": "^4.0.2",
+    "gulp-if": "^2.0.2",
+    "gulp-plumber": "^1.2.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-sequence": "^1.0.0",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-stylelint": "^7.0.0",
+    "gulp-task-loader": "^1.4.4",
+    "gulp-uglify": "^3.0.0",
+    "lazypipe": "^1.0.1",
+    "stylelint": "^9.1.1",
+    "stylelint-order": "^0.8.1",
+    "yargs": "^11.0.0"
+  },
+  "author": "Nathan Rodger",
+  "license": "ISC"
+}

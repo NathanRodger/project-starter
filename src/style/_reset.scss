@@ -1,0 +1,23 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    font-size: 62.5%; /* stylelint-disable-line */
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+}
+
+body,
+html {
+    min-height: 100%;
+}
+
+body {
+    margin: 0;
+    font-size: 1.6rem;
+}
