@@ -1,7 +1,7 @@
 {
-  "name": "template-base",
+  "name": "project-starter",
   "version": "1.0.0",
-  "description": "Base template",
+  "description": "project starter",
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
