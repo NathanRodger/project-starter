@@ -1,6 +1,6 @@
 const gulp = require('gulp');
 const gulpSequence = require('gulp-sequence');
-const SetupSync = require('./gulp-helpers/browser-sync');
+const options = require('./gulp-helpers/options');
 
 require('gulp-task-loader')('gulp-tasks');
 
@@ -9,17 +9,17 @@ gulp.task('build', done => gulpSequence('build:markup', 'build:style', 'build:sc
 gulp.task('lint', done => gulpSequence('lint:style', 'lint:script')(done));
 
 gulp.task('watch', ['lint', 'build'], (done) => {
-    SetupSync.init();
+    options.sync();
 
     gulp.watch([
         'src/**/*.html',
-    ], () => gulpSequence('build:markup')(() => SetupSync.reload()));
+    ], () => gulpSequence('build:markup')(() => options.reload()));
     gulp.watch([
         'src/**/*.scss',
-    ], () => gulpSequence('build:style', 'lint:style')(() => SetupSync.reload()));
+    ], () => gulpSequence('build:style', 'lint:style')(() => options.reload()));
     gulp.watch([
         'src/**/*.js',
-    ], () => gulpSequence('build:script', 'lint:script')(() => SetupSync.reload()));
+    ], () => gulpSequence('build:script', 'lint:script')(() => options.reload()));
 
     done();
 });

@@ -1,36 +1,37 @@
-const babel = require('gulp-babel');
 const gulp = require('gulp');
 const gulpif = require('gulp-if');
 const plumber = require('gulp-plumber');
-const sourcemaps = require('gulp-sourcemaps');
-const uglify = require('gulp-uglify');
-const lazypipe = require('lazypipe');
 const yargs = require('yargs');
+const webpack = require('webpack-stream');
+const options = require('../../gulp-helpers/options');
 
 const { argv } = yargs;
 
-const handleError = (err) => {
-    console.log(err.toString());
-    this.emit('end');
-};
-
-const development = lazypipe()
-.pipe(sourcemaps.write, '.')
-.pipe(gulp.dest, './_tmp');
-
-const production = lazypipe()
-.pipe(() => {
-    return uglify();
-})
-.pipe(gulp.dest, './dist');
-
 module.exports = () => gulp.src([
-    'src/**/*.js',
+    './src/script/main.js',
 ])
-.pipe(plumber({ errorHandler: handleError }))
-.pipe(gulpif(!argv.production, sourcemaps.init()))
-.pipe(babel({
-    presets: ['env'],
+.pipe(webpack({
+    output: {
+        filename: 'script/main.js',
+    },
+    devtool: 'source-map',
+    resolve: {
+        extensions: ['.js'],
+    },
+    module: {
+        rules: [{
+            test: /\.js$/,
+            exclude: /node_modules\/(?!identicons).*/,
+            use: {
+                loader: 'babel-loader',
+                options: {
+                    presets: ['env', 'minify'],
+                    plugins: ['angularjs-annotate'],
+                },
+            },
+        }],
+    },
 }))
-.pipe(gulpif(!argv.production, development()))
-.pipe(gulpif(argv.production, production()));
+.pipe(plumber({ errorHandler: options.plumber }))
+.pipe(gulpif(!argv.production, gulp.dest('./_tmp')))
+.pipe(gulpif(argv.production, gulp.dest('./dist')));
